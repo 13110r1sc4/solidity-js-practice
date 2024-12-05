@@ -1,0 +1,56 @@
+Yarn init
+
+yarn add --dev hardhat    
+
+yarn hardhat   
+
+yarn hardhat account
+
+yarn hardhat compile   
+
+yarn add --dev prettier prettier-plugin-solidity 
+
+ yarn hardhat run scripts/deploy.js       
+
+yarn add prettier
+
+Nom install prettier
+
+yarn hardhat run scripts/deploy.js --network hardhat
+
+yarn add --dev dotenv   
+
+yarn add --dev @nomicfoundation/hardhat-verify 
+
+yarn hardhat block-number  
+
+Yarn hardhat node 
+-> to run local node, which is a different network than 
+the default hardhat network we used before and that does not keep track of contracts. 
+It’s hardhat but in the sense that it allows us to run a node -> no need for accounts, 
+chainId is same as default hardhat network and is 31337
+
+yarn hardhat console --newtwork localhost
+-> hardhat has the console we can use to use around the blockchain. 
+Works for hardhat and sepolia networks (all of them)
+
+Yarn hardhat clean 
+-> to delete the artefacts folder and clean the cache folder
+
+
+TESTS
+
+We can run tests that are placed in the folder tests.
+
+yarn hardhat test
+yarn hardhat test --grep store 
+-> the store word is in the second function only so it runs the store test
+NB: if I add it.only in the code, it will only do that test without specifying
+
+yarn add hardhat-gas-reporter —dev
+->install package and let’s see how much gas fee do our functions need
+
+
+SOLIDITY COVERAGE
+
+yarn add --dev solidity-coverage

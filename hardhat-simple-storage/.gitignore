@@ -12,7 +12,6 @@
 #!.yarn/cache
 .pnp.*
 
-node_modules
 .env
 
 # Hardhat files
@@ -31,3 +30,5 @@ node_modules
 ignition/deployments/chain-31337
 
 node_modules/
+
+gas-report.txt
