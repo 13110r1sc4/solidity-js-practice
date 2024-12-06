@@ -1,6 +1,6 @@
-const { task } = require("hardhat/config")
+import { task } from "hardhat/config"
 
-task("block-number", "Prints the currenet clock number").setAction(
+export default task("block-number", "Prints the currenet clock number").setAction(
     async (taskArgs, hre) => {
         // no need to say function in js
         // hre can access packages from hardhat

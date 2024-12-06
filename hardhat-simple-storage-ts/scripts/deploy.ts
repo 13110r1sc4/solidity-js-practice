@@ -1,5 +1,5 @@
 // imports
-const { ethers, run, network } = require("hardhat"); // we do it from hh, see package.json, hh knows stuff more
+import { ethers, run, network } from "hardhat"; // we do it from hh, see package.json, hh knows stuff more
 
 // async fun
 
@@ -32,7 +32,7 @@ async function main() {
   console.log(`Updated Value is: ${updatedValue}`);
 }
 
-async function verify(contractAddress, args) {
+async function verify(contractAddress: string, args: any[]) {
   // to verify with etherscan. need etherscan api token (put in .env)
   console.log("Verifying contract...");
   try {
@@ -40,7 +40,7 @@ async function verify(contractAddress, args) {
       address: contractAddress,
       constructorArguments: args,
     });
-  } catch (e) {
+  } catch (e: any) {
     if (e.message.toLowerCase().includes("Already verified")) {
       console.log("Already verified!");
     } else {

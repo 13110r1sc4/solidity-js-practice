@@ -1,15 +1,17 @@
-const { ethers } = require("hardhat");
-const { expect, assert } = require("chai");
+import { ethers } from "hardhat"
+import { expect, assert } from "chai"
+import {SimpleStorage, SimpleStorage__factory} from "../typechain-types"
 
 describe("SimpleStorage", function () {
-  let SimpleStorageFactory, SimpleStorage;
+  let simpleStorageFactory: SimpleStorage__factory 
+  let simpleStorage: SimpleStorage
   beforeEach(async function () {
-    SimpleStorageFactory = await ethers.getContractFactory("SimpleStorage");
-    SimpleStorage = await SimpleStorageFactory.deploy();
+    simpleStorageFactory = (await ethers.getContractFactory("SimpleStorage")) as SimpleStorage__factory
+    simpleStorage = await simpleStorageFactory.deploy();
   });
 
   it("Should start with a favorite number of 0", async function () {
-    const currentValue = await SimpleStorage.retrieve();
+    const currentValue = await simpleStorage.retrieve();
     const expectedValue = "0";
     // assert
     // expect
@@ -18,10 +20,10 @@ describe("SimpleStorage", function () {
   });
   it("Should update when we call store", async function () {
     const expectedValue = "7";
-    const transactionResponse = await SimpleStorage.store(expectedValue);
+    const transactionResponse = await simpleStorage.store(expectedValue);
     await transactionResponse.wait(1);
 
-    const currentValue = await SimpleStorage.retrieve();
+    const currentValue = await simpleStorage.retrieve();
     assert.equal(currentValue.toString(), expectedValue);
   });
 }); // function(){} same as () => {}
