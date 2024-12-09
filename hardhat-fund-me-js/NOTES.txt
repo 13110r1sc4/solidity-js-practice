@@ -1,0 +1,16 @@
+INITIALIZE PROJECT FROM SCRATCH
+
+yarn add --dev hardhat
+yarn hardhat  
+
+LINTING
+
+solhint is a solidity linter, to lint our code -> to analysis code for potential
+errors
+prettier -> to format
+solhint -> to lint
+
+yarn add --dev solhint
+// add solhint to devDep
+arn solhint contracts/*.sol   
+
