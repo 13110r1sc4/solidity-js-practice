@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/leonardorisca/Desktop/DeFi/practice/PCollins_32h/solidity/hardhat-fund-me-js/contracts/FundMe.sol": {
-      "lastModificationDate": 1733771832755,
-      "contentHash": "3cf45ce703411b1892c9420462865dfc",
+      "lastModificationDate": 1733942152358,
+      "contentHash": "5d1ad38a153e60531ef009b9111bf8da",
       "sourceName": "contracts/FundMe.sol",
       "solcConfig": {
         "version": "0.8.28",
@@ -20,12 +20,19 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
               ],
               "": [
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": true
           }
         }
       },
@@ -41,8 +48,8 @@
       ]
     },
     "/Users/leonardorisca/Desktop/DeFi/practice/PCollins_32h/solidity/hardhat-fund-me-js/contracts/PriceConverter.sol": {
-      "lastModificationDate": 1733771818062,
-      "contentHash": "6868a0979b21fe50ea2e458ed909df17",
+      "lastModificationDate": 1733942152361,
+      "contentHash": "1a68ed6f8727ebe964043f0de44e51f0",
       "sourceName": "contracts/PriceConverter.sol",
       "solcConfig": {
         "version": "0.8.28",
@@ -59,12 +66,19 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
               ],
               "": [
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": true
           }
         }
       },
@@ -79,7 +93,7 @@
       ]
     },
     "/Users/leonardorisca/Desktop/DeFi/practice/PCollins_32h/solidity/hardhat-fund-me-js/node_modules/@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": {
-      "lastModificationDate": 1733769148029,
+      "lastModificationDate": 1733939003980,
       "contentHash": "64a3f906dc7696aa3c9fa8454b673be7",
       "sourceName": "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
       "solcConfig": {
@@ -97,12 +111,19 @@
                 "evm.bytecode",
                 "evm.deployedBytecode",
                 "evm.methodIdentifiers",
-                "metadata"
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
               ],
               "": [
                 "ast"
               ]
             }
+          },
+          "metadata": {
+            "useLiteralContent": true
           }
         }
       },
@@ -113,6 +134,183 @@
       "artifacts": [
         "AggregatorV3Interface"
       ]
+    },
+    "/Users/leonardorisca/Desktop/DeFi/practice/PCollins_32h/solidity/hardhat-fund-me-js/node_modules/@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV2V3Interface.sol": {
+      "lastModificationDate": 1733939003958,
+      "contentHash": "a045cdf1098c0a0735bee2f727fee0aa",
+      "sourceName": "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV2V3Interface.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "./AggregatorInterface.sol",
+        "./AggregatorV3Interface.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AggregatorV2V3Interface"
+      ]
+    },
+    "/Users/leonardorisca/Desktop/DeFi/practice/PCollins_32h/solidity/hardhat-fund-me-js/node_modules/@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorInterface.sol": {
+      "lastModificationDate": 1733939003969,
+      "contentHash": "1739f42cb7ceb036e6fd94b9d9990506",
+      "sourceName": "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorInterface.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "AggregatorInterface"
+      ]
+    },
+    "/Users/leonardorisca/Desktop/DeFi/practice/PCollins_32h/solidity/hardhat-fund-me-js/node_modules/@chainlink/contracts/src/v0.8/tests/MockV3Aggregator.sol": {
+      "lastModificationDate": 1733938939012,
+      "contentHash": "964c2024720c0de4d9ed9fa3907afa75",
+      "sourceName": "@chainlink/contracts/src/v0.8/tests/MockV3Aggregator.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "../shared/interfaces/AggregatorV2V3Interface.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "MockV3Aggregator"
+      ]
+    },
+    "/Users/leonardorisca/Desktop/DeFi/practice/PCollins_32h/solidity/hardhat-fund-me-js/contracts/test/MockV3Aggregator.sol": {
+      "lastModificationDate": 1733942152349,
+      "contentHash": "710795526028f0677eca612a1891aecb",
+      "sourceName": "contracts/test/MockV3Aggregator.sol",
+      "solcConfig": {
+        "version": "0.8.28",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [
+        "@chainlink/contracts/src/v0.8/tests/MockV3Aggregator.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.26"
+      ],
+      "artifacts": []
     }
   }
 }

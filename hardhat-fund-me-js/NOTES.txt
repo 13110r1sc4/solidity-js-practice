@@ -14,3 +14,16 @@ yarn add --dev solhint
 // add solhint to devDep
 arn solhint contracts/*.sol   
 
+yarn hardhat clean -> if it doe not compile
+yarn hardhat compile
+
+yarn add hardhat-deploy 
+-> isntall package to deploy so we do not use the script
+
+yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers
+-> to add hardhat-ethers but liek this ethers overrides hardhat to keep track of deployment
+
+yarn hardhat deploy 
+-> with this command we run the files in teh deploy folder -> good practise is to number the files
+
+MOCKING

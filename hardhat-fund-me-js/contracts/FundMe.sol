@@ -21,13 +21,16 @@ contract FundMe {
         _;
     }
 
-    constructor() {
+    AggregatorV3Interface public priceFeed;
+
+    constructor(address priceFeedAddress) {
         i_owner = msg.sender;
+        priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
     function fund() public payable {
         require(
-            msg.value.getConversionRate() >= MINIMUM_USD,
+            msg.value.getConversionRate(priceFeed) >= MINIMUM_USD,
             "You need to spend more ETH!"
         );
         s_addressToAmountFunded[msg.sender] += msg.value;
