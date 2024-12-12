@@ -6,13 +6,22 @@ import "./PriceConverter.sol";
 
 error FundMe__NotOwner();
 
+/**
+ * @title A contract for crowd funding
+ * @author Leonardo Risca
+ * @notice This contract is to demo a sample funding contract
+ */
+
 contract FundMe {
+    // Type declarations
     using PriceConverter for uint256;
 
+    // sttae variables
     uint256 public constant MINIMUM_USD = 50 * 1e18;
     address private immutable i_owner;
     address[] private s_funders;
     mapping(address => uint256) private s_addressToAmountFunded;
+    AggregatorV3Interface public priceFeed;
 
     modifier onlyOwner() {
         if (msg.sender != i_owner) {
@@ -21,12 +30,15 @@ contract FundMe {
         _;
     }
 
-    AggregatorV3Interface public priceFeed;
-
     constructor(address priceFeedAddress) {
         i_owner = msg.sender;
         priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
+
+    /**
+     * @notice
+     * @dev
+     */
 
     function fund() public payable {
         require(

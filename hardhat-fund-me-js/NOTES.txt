@@ -27,3 +27,16 @@ yarn hardhat deploy
 -> with this command we run the files in teh deploy folder -> good practise is to number the files
 
 MOCKING
+
+
+if i do yarn hardhat compile , and then deploy, and then node -> i have a local node and all the contracts deployed vefore are already
+in the blockchain
+
+TESTING
+
+unit test are done locally
+- local hardhat
+-forked hardhat
+-> yarn hardhat coverage
+
+staging tests
