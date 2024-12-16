@@ -40,3 +40,9 @@ unit test are done locally
 -> yarn hardhat coverage
 
 staging tests
+
+
+
+NB: you can use console.log in solidity
+
+FINISH 99 DEPLOY DEBUG
