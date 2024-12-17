@@ -26,7 +26,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     log("Logging storage...")
     for (let i = 0; i < 10; i++) {
         log(
-            `Location ${i}: ${await ethers.provider.getStorageAt(
+            `Location ${i}: ${await ethers.provider.getStorage(
                 funWithStorage.address,
                 i,
             )}`,
@@ -43,10 +43,10 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     //     }
     // }
 
-    // const firstElementLocation = ethers.utils.keccak256(
+    // const firstElementLocation = ethers.keccak256(
     //     "0x0000000000000000000000000000000000000000000000000000000000000002"
     // );
-    // const arrayElement = await ethers.provider.getStorageAt(
+    // const arrayElement = await ethers.provider.getStorage(
     //     funWithStorage.address,
     //     firstElementLocation
     // );

@@ -45,4 +45,9 @@ staging tests
 
 NB: you can use console.log in solidity
 
-FINISH 99 DEPLOY DEBUG
+
+OPCODES
+in artifacts/buildinfo we can see the opcodes: they represent what the machine is doing and how much computational work it takes to 
+run our code
+https://github.com/crytic/evm-opcodes
+-> find the cost for functions. we can se that save a word to storage requires a lot of gas! 

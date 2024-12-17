@@ -18,10 +18,11 @@ contract FundMe {
 
     // sttae variables
     uint256 public constant MINIMUM_USD = 50 * 1e18;
-    address private immutable i_owner;
-    address[] private s_funders;
+    address private immutable i_owner; // not storage
+    address[] private s_funders; // storage
     mapping(address => uint256) private s_addressToAmountFunded;
-    AggregatorV3Interface public priceFeed;
+    AggregatorV3Interface public s_priceFeed; // storage
+    // NB: usually we use underscorse in naming variables when it is in storage s_
 
     modifier onlyOwner() {
         if (msg.sender != i_owner) {
@@ -30,9 +31,9 @@ contract FundMe {
         _;
     }
 
-    constructor(address priceFeedAddress) {
+    constructor(address s_priceFeedAddress) {
         i_owner = msg.sender;
-        priceFeed = AggregatorV3Interface(priceFeedAddress);
+        s_priceFeed = AggregatorV3Interface(s_priceFeedAddress);
     }
 
     /**
@@ -42,14 +43,14 @@ contract FundMe {
 
     function fund() public payable {
         require(
-            msg.value.getConversionRate(priceFeed) >= MINIMUM_USD,
+            msg.value.getConversionRate(s_priceFeed) >= MINIMUM_USD,
             "You need to spend more ETH!"
         );
         s_addressToAmountFunded[msg.sender] += msg.value;
         s_funders.push(msg.sender);
     }
 
-    function withdraw() public onlyOwner {
+    function withdraw() public payable onlyOwner {
         for (
             uint256 funderIndex = 0;
             funderIndex < s_funders.length;
@@ -64,8 +65,11 @@ contract FundMe {
         require(success, "Transfer failed");
     }
 
-    function cheaperWithdraw() public onlyOwner {
-        address[] memory funders = s_funders;
+    // we are using a lot of gas here for storage and reading from storage
+    // -> lets rceate a function that is cheaper
+
+    function cheaperWithdraw() public payable onlyOwner {
+        address[] memory funders = s_funders; // memory is chaper than storage
         for (
             uint256 funderIndex = 0;
             funderIndex < funders.length;
@@ -93,4 +97,6 @@ contract FundMe {
     function getOwner() public view returns (address) {
         return i_owner;
     }
+    // these functions are used to keep the returned variables private -> the variables names like s_funders should be replaced
+    // with getFunder
 }
