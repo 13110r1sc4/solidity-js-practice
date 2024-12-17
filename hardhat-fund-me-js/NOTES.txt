@@ -51,3 +51,10 @@ in artifacts/buildinfo we can see the opcodes: they represent what the machine i
 run our code
 https://github.com/crytic/evm-opcodes
 -> find the cost for functions. we can se that save a word to storage requires a lot of gas! 
+
+
+RUN WITH LOCAL node
+yarn hardhat node
+-> move back to bash terminal
+yarn hardhat deploy --NETWORK LOCALHOST
+yarn hardhat run scripts/fund.js --network localhost
