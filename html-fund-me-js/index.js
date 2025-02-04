@@ -1,7 +1,10 @@
 // in front end cannot use require
 // better use import
+// NB: if we restart the local node, we have to reset the MM account in the advanced settings,
+// because MM does not know the node is starting from zero -> so that they are in sync about the nonce
+
 import { ethers } from "./ethers-6.7.0.esm.min.js"
-import { abi } from "./constants.js"
+import { abi, contractAddress } from "./constants.js"
 
 const connectButton = document.getElementById("connectButton")
 const fundButton = document.getElementById("fundButton")
@@ -22,17 +25,47 @@ async function connect() {
 }
 
 // fund
-async function fund(ethAmount) {
-    console.log(`Funding with ${ethAmount}...`)
+async function fund() {
+    const ethAmount = "1"
+    console.log(`Funding with ${ethAmount} ETH ...`)
     if (typeof window.ethereum !== "undefined") {
         // provider for conenction to bc
         // singer / wallet / someone with some gas
         //
         const provider = new ethers.BrowserProvider(window.ethereum)
-        const signer = provider.getSigner()
-        const contract = "" // ?
-        console.log(signer) // signer is the account connected (public address)
+        const signer = await provider.getSigner()
+        const contract = new ethers.Contract(contractAddress, abi, signer)
+        try {
+            const transactionResponse = await contract.fund({
+                value: ethers.parseEther(ethAmount),
+            })
+            // hey, wait for this TX to finish
+            await listenForTransactionMine(transactionResponse, provider)
+        } catch (error) {
+            console.log(error)
+        }
+
+        // console.log(signer) // signer is the account connected (public address)
     }
+}
+// create function to listen for the transaction to be mined: (the first works as well)
+
+// function listenForTransactionMine(transactionResponse, provider) {
+//     // is not async because
+//     console.log(`Mining ${transactionResponse.hash}...`)
+//     provider.once(transactionResponse.hash, (transactionReceipt) => {
+//         console.log(
+//             `Completed with ${transactionReceipt.confirmations} confirmations`,
+//         )
+//     }) // the second argument is an anonymous function
+//     // create a listener for the blockchain
+// }
+
+async function listenForTransactionMine(transactionResponse, provider) {
+    console.log(`Mining ${transactionResponse.hash}...`)
+
+    const receipt = await provider.waitForTransaction(transactionResponse.hash)
+    console.log(`Completed with ${receipt.confirmations} confirmations`)
 }
 
 // withdraw
