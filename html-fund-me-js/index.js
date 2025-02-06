@@ -61,11 +61,43 @@ async function fund() {
 //     // create a listener for the blockchain
 // }
 
-async function listenForTransactionMine(transactionResponse, provider) {
+// async function listenForTransactionMine(transactionResponse, provider) {
+//     console.log(`Mining ${transactionResponse.hash}...`)
+//     return new Promise((resolve, reject) => {
+//         const transactionReceipt = await provider.waitForTransaction(
+//             transactionResponse.hash,
+//         )
+//         console.log(
+//             `Completed with ${transactionReceipt.confirmations} confirmations`,
+//         )
+//     })
+// }
+
+// async function listenForTransactionMine(transactionResponse, provider) {
+//     console.log(`Mining ${transactionResponse.hash}...`)
+//     return new Promise((resolve, reject) => {
+//         provider.once(transactionResponse.hash, (transactionReceipt) => {
+//             console.log(
+//                 `Completed with ${transactionReceipt.confirmations} confirmations`,
+//             )
+//             resolve(transactionReceipt)
+//         })
+//     })
+// }
+
+// NB: You're seeing that message because transactionReceipt.confirmations
+// is likely a function instead of a numeric value. This is a change in ethers.js v6,
+// where confirmations is now an async function rather than a direct number.
+
+async function listenForTransactionMine(transactionResponse) {
     console.log(`Mining ${transactionResponse.hash}...`)
+    const transactionReceipt = await transactionResponse.wait()
 
-    const receipt = await provider.waitForTransaction(transactionResponse.hash)
-    console.log(`Completed with ${receipt.confirmations} confirmations`)
+    // Fix: Await the confirmations method
+    const confirmations = await transactionReceipt.confirmations()
+
+    console.log(`Completed with ${confirmations} confirmations`)
+    return transactionReceipt
 }
-
+// TRANSACTION REVERTS, FIND SOLUTION
 // withdraw

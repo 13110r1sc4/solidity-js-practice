@@ -17,7 +17,7 @@ contract FundMe {
     using PriceConverter for uint256;
 
     // sttae variables
-    uint256 public constant MINIMUM_USD = 50 * 1e18;
+    uint256 public constant MINIMUM_USD = 50;
     address private immutable i_owner; // not storage
     address[] private s_funders; // storage
     mapping(address => uint256) private s_addressToAmountFunded;
