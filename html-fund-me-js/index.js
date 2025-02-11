@@ -8,8 +8,12 @@ import { abi, contractAddress } from "./constants.js"
 
 const connectButton = document.getElementById("connectButton")
 const fundButton = document.getElementById("fundButton")
+const balanceButton = document.getElementById("balanceButton")
+const withdrawButton = document.getElementById("withdrawButton")
 connectButton.onclick = connect
 fundButton.onclick = fund
+balanceButton.onclick = getBalance
+withdrawButton.onclick = withdraw
 
 // console.log(ethers)
 
@@ -26,7 +30,7 @@ async function connect() {
 
 // fund
 async function fund() {
-    const ethAmount = "1"
+    const ethAmount = document.getElementById("ethAmount").value
     console.log(`Funding with ${ethAmount} ETH ...`)
     if (typeof window.ethereum !== "undefined") {
         // provider for conenction to bc
@@ -99,5 +103,29 @@ async function listenForTransactionMine(transactionResponse) {
     console.log(`Completed with ${confirmations} confirmations`)
     return transactionReceipt
 }
+
+async function getBalance() {
+    if (typeof window.ethereum !== "undefined") {
+        const provider = new ethers.BrowserProvider(window.ethereum)
+        const balance = await provider.getBalance(contractAddress)
+        console.log(ethers.formatEther(balance))
+    }
+}
+
+async function withdraw() {
+    if (typeof window.ethereum !== "undefined") {
+        console.log("withdrawing...")
+        const provider = new ethers.BrowserProvider(window.ethereum)
+        const signer = await provider.getSigner()
+        const contract = new ethers.Contract(contractAddress, abi, signer)
+        try {
+            const transactionResponse = await contract.withdraw()
+            await listenForTransactionMine(transactionResponse, provider)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 // TRANSACTION REVERTS, FIND SOLUTION
 // withdraw
