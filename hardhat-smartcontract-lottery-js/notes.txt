@@ -3,3 +3,15 @@ yarn add --dev hardhat
 yarn hardhat  
 
 yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle chai ethereum-waffle hardhat hardhat-contract-sizer hardhat-deploy hardhat-gas-reporter prettier prettier-plugin-solidity solhint solidity-coverage dotenv
+
+EVENTS & logging
+
+events allows to pring to log. smart contacts cannot access this log, indeed is not gas consuming
+
+RANDOMNESS IN NWEB3 -> LINK: VRF v2
+
+"@chainlink/contracts/src/v0.8/vrf/VRFConsumerBaseV2.sol"
+
+HARDHAT SHORTHAND
+
+yarn global add hardhat-shorthand --> hh compile
