@@ -15,3 +15,6 @@ RANDOMNESS IN NWEB3 -> LINK: VRF v2
 HARDHAT SHORTHAND
 
 yarn global add hardhat-shorthand --> hh compile
+
+CHAINLINK KEEPERS to automate
+
