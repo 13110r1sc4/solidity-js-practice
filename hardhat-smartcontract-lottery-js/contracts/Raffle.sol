@@ -51,7 +51,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     event WinnerPicked(address indexed winner);
 
     constructor(
-        address vrfCoordinatorV2,
+        address vrfCoordinatorV2, // contract address
         uint256 entranceFee,
         bytes32 gasLane,
         uint64 subscriptionId,
@@ -66,7 +66,6 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         s_raffleState = RaffleState.OPEN;
         s_lastTimeStamp = block.timestamp;
         i_interval = interval;
-        
     }
     function enterRaffle() public payable {
         if (msg.value < i_entranceFee) {
@@ -90,22 +89,27 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
      * 3. our subscription is funded with LINK
      * 4. the lottery should be in an "open" state
      */
-    function checkUpkeep(bytes memory /* checkData */) public override returns (bool upkeepNeeded, bytes memory /*perform data*/ ){
+    function checkUpkeep(
+        bytes memory /* checkData */
+    ) public override returns (bool upkeepNeeded, bytes memory /*perform data*/) {
         bool isOpen = (RaffleState.OPEN == s_raffleState);
         bool timePassed = ((block.timestamp - s_lastTimeStamp) > i_interval);
         bool hasPlayers = (s_players.length > 0);
         bool hasBalance = address(this).balance > 0;
         bool upkeepNeeded = (isOpen && timePassed && hasPlayers && hasBalance);
-
     }
 
-    function performUpkeep(bytes calldata /* perfomrData */ ) external override {
+    function performUpkeep(bytes calldata /* perfomrData */) external override {
         // request the random number
         // do something wit it
         // 2 trans process
         (bool upkeepNeeded, ) = checkUpkeep("");
         if (!upkeepNeeded) {
-            revert Raffle__UpKeepNotNeeded(address(this).balance, s_players.length, uint256(s_raffleState));
+            revert Raffle__UpKeepNotNeeded(
+                address(this).balance,
+                s_players.length,
+                uint256(s_raffleState)
+            );
         }
         s_raffleState = RaffleState.CALCULATING;
         uint256 requestId = i_vrfCoordinator.requestRandomWords(
